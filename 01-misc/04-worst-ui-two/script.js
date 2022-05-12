@@ -11,6 +11,22 @@
 
 (function() {
 
-    // your code here
+   const target = document.getElementById("target");
+   const buttons = document.querySelectorAll("button");
+
+   console.log(buttons);
+
+   buttons.forEach(btn => {
+       let maxVal = +btn.dataset.max;
+       let minVal = +btn.dataset.min;
+
+       btn.addEventListener("click", () => {
+           let randomNum = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
+           console.log(randomNum);
+           let ogNum = +target.innerText.substring(1);
+           target.innerText = `+${ogNum + randomNum}`
+       });
+
+    });
 
 })();
