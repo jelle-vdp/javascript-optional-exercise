@@ -19,31 +19,33 @@
 
     document.getElementById("target").innerHTML = ogStringArrSpans.join(" ");
 
-    var indexS = 0;
+    var fontClassNum = 0;
 
     const makeWaves = () => { 
     
-        document.querySelectorAll("#target span").forEach((span, i) => {
+        document.querySelectorAll("#target span").forEach((span, i, arr) => {
 
-            if (i < 4){
-                indexS = indexS++;
-                setTimeout(() => {
-                    console.log(indexS);
-                    span.className = `font-${indexS}`
-                }, 1000 * (i + 1));
-            } else if (i < 8){
-                indexS = indexS--;
-                setTimeout(() => {    
-                    console.log(indexS);            
-                    span.className = `font-${indexS}`
-                }, 1000 * (i + 1));
-            } else if (i < 12){
-                indexS = indexS++; 
-                setTimeout(() => {    
-                    console.log(indexS);            
-                    span.className = `font-${indexS}`
-                }, 1000 * (i + 1));
+            const addClassName = () => {
+                span.className = `font-${fontClassNum}`;
+                console.log("fontClassNum is = ", fontClassNum);
+                console.log("index is = ", i);
             };
+
+
+            if (i < 5){
+                fontClassNum = fontClassNum + 1;
+                setTimeout(addClassName, 3000 * i);
+            } else if (i < 9){
+                fontClassNum = fontClassNum - 1;
+                setTimeout(addClassName, 3000 * i);
+            } else if (i < 15){
+                fontClassNum = fontClassNum + 1;
+                setTimeout(addClassName, 3000 * i);
+            };
+
+            if (i + 1 === arr.length){
+                console.log("STOP");
+            }
         });
     }
 
